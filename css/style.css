@@ -1,0 +1,346 @@
+body {
+    font-family: 'Roboto';
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+
+/*Шапка*/
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0070C5;
+    padding: 20px 50px;
+}
+
+header img {
+    width: 150px;
+}
+
+header .button {
+    padding: 5px 15px;
+    border: 2px solid #FF6969;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 38px;
+    color: #FF6969;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+main {
+    background-color: #00D98D;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 300px;
+    padding: 50px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #FFD500;
+    align-items: center;
+    padding: 100px;
+    gap: 40px;
+}
+
+input,
+textarea {
+    padding: 10px;
+    border: 2px solid #00D98D;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+}
+
+form .button,
+form button {
+    padding: 5px 15px;
+    background: #FF6969;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 38px;
+    color: #FFD500;
+    border: none;
+    text-decoration: none;
+}
+
+footer {
+    box-sizing: border-box;
+    background-color: #0070C5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 50px;
+}
+
+footer h2 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    color: #FF6969;
+    margin: 0;
+}
+
+/*Создание заметки*/
+header .btn-create {
+    background-color: #FF6969;
+    color: #FFD500;
+}
+
+.btn-create img {
+    width: 32px;
+    margin-right: 10px;
+}
+
+.notes {
+    background-color: #00D98D;
+    flex: 1;
+    padding: 50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    column-gap: 50px;
+    row-gap: 50px;
+}
+
+.note {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 300px;
+    background-color: #FFD500;
+    padding: 20px;
+    box-shadow: 5px 5px 5px #000000;
+}
+
+.note:nth-child(odd) {
+    transform: rotate(-5deg);
+}
+
+.note:nth-child(4n+2) {
+    transform: rotate(4deg);
+}
+
+.note:nth-child(4n) {
+    transform: rotate(3deg);
+}
+
+.title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title img {
+    width: 53px;
+}
+
+.title h3 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
+}
+
+.note p {
+    flex: 1;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.trash {
+    width: 32px;
+    height: 32px;
+    background-image: url("../img/trash.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    border: none;
+    background-color: transparent;
+}
+
+/*Создание заметки*/
+.new_note,
+.view_note {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    gap: 26px;
+    width: 600px;
+    box-sizing: border-box;
+}
+
+.new_note input,
+.new_note textarea {
+    width: 100%;
+}
+
+.new_note img,
+.view_note img {
+    height: 200px;
+}
+
+.save_btn {
+    background-image: url("../img/save.png");
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.new_note .buttons {
+    width: 100%;
+    background-color: #00D98D;
+    padding: 10px;
+}
+
+.close_btn {
+    background-image: url("../img/close.svg");
+    width: 32px;
+    height: 32px;
+    background-color: transparent;
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    align-self: flex-end;
+}
+
+.view_note .trash {
+    align-self: flex-end;
+}
+
+.content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.content img {
+    align-self: center;
+}
+
+.add_note{
+    display: none;
+}
+
+input.error, input:invalid{
+    border: 1px solid #FF6969;
+}
+
+@media screen and (max-width: 1350px) {
+    .notes{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .notes{
+        grid-template-columns: 1fr 1fr;
+    }
+
+    header .btn-create {
+        display: none;
+    }
+
+    .add_note{
+        display: block;
+        width: 30px;
+        height: 30px;
+        background-color:#FF6969;
+        text-align: center;
+        text-decoration: none;
+        font-size: xx-large;
+        font-weight: 900;
+        color: #FFD500;
+        padding: 10px;
+        border-radius: 50%;
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    header {
+        padding: 20px;
+    }
+
+    header img {
+        width: 100px;
+    }
+
+    main{
+        flex-direction: column-reverse;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    main>img{
+        width: 50%;
+    }
+
+    form{
+        padding: 20px;
+    }
+
+    .note:nth-child(odd) {
+        transform: none;
+    }
+    
+    .note:nth-child(4n+2) {
+        transform: none;
+    }
+    
+    .note:nth-child(4n) {
+        transform: none;
+    }
+
+    .notes{
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+
+    .new_note{
+        width: initial;
+    }
+
+    .view_note{
+        width: initial;
+    }
+
+    .title{
+        flex-direction: column;
+    }
+
+    .title img{
+        width: 100%;
+    }
+
+    .note{
+        height: initial;
+    }
+}
