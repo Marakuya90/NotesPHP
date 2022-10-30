@@ -29,6 +29,11 @@
                 <input type="password" placeholder="Пароль" name="password" id="password" required>
                 <input type="password" placeholder="Подтверждение пароля" id="confirm">
                 <button>Регистрация</button>
+                <?php
+                if(!empty($_GET))
+                $error = $_GET["error"];
+                echo "<p class = 'error' >$error</p>";
+                ?>
             </form>
         </main>
         <footer>

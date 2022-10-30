@@ -23,11 +23,16 @@
         </header>
         <main>
             <img src="img/notebook.png" alt="notebook">
-            <form action="">
-                <input type="text" placeholder="Логин">
-                <input type="password" placeholder="Пароль">
-                <a href="notes.php" class="button btn-login">Войти</a>
+            <form action="controllers/logincontroller.php" name="loginForm" method="POST">
+                <input type="text" placeholder="Логин" name="login">
+                <input type="password" placeholder="Пароль" name="password">
+                <button class="btn-login">Войти</button>
             </form>
+            <?php
+                if(!empty($_GET))
+                $error = $_GET["error"];
+                echo "<p class = 'error' >$error</p>";
+            ?>
         </main>
         <footer>
             <h2>Заметки</h2>

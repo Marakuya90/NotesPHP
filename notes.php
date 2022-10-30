@@ -1,3 +1,6 @@
+<?php
+session_start()
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,9 +11,7 @@
     <title>Заметки</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -23,106 +24,28 @@
             <a href="register.php" class="button">Выход</a>
         </header>
         <div class="notes">
-            <div class="note">
-                <div class="title">
-                    <img src="img/cat1.jpg" alt="note">
-                    <h3>Заголовок</h3>
-                </div>
-                <p>Текст</p>
-                <div class="buttons">
-                    <button class="trash"></button>
-                </div>
-            </div>
-            <div class="note">
-                <div class="title">
-                    <img src="img/cat1.jpg" alt="note">
-                    <h3>Заголовок</h3>
-                </div>
-                <p>Текст</p>
-                <div class="buttons">
-                    <button class="trash"></button>
-                </div>
-            </div>
-            <div class="note">
-                <div class="title">
-                    <img src="img/cat1.jpg" alt="note">
-                    <h3>Заголовок</h3>
-                </div>
-                <p>Текст</p>
-                <div class="buttons">
-                    <button class="trash"></button>
-                </div>
-            </div>
-            <div class="note">
-                <div class="title">
-                    <img src="img/cat1.jpg" alt="note">
-                    <h3>Заголовок</h3>
-                </div>
-                <p>Текст</p>
-                <div class="buttons">
-                    <button class="trash"></button>
-                </div>
-            </div>
-            <div class="note">
-                <div class="title">
-                    <img src="img/cat1.jpg" alt="note">
-                    <h3>Заголовок</h3>
-                </div>
-                <p>Текст</p>
-                <div class="buttons">
-                    <button class="trash"></button>
-                </div>
-            </div>
-            <div class="note">
-                <div class="title">
-                    <img src="img/cat1.jpg" alt="note">
-                    <h3>Заголовок</h3>
-                </div>
-                <p>Текст</p>
-                <div class="buttons">
-                    <button class="trash"></button>
-                </div>
-            </div>
-            <div class="note">
-                <div class="title">
-                    <img src="img/cat1.jpg" alt="note">
-                    <h3>Заголовок</h3>
-                </div>
-                <p>Текст</p>
-                <div class="buttons">
-                    <button class="trash"></button>
-                </div>
-            </div>
-            <div class="note">
-                <div class="title">
-                    <img src="img/cat1.jpg" alt="note">
-                    <h3>Заголовок</h3>
-                </div>
-                <p>Текст</p>
-                <div class="buttons">
-                    <button class="trash"></button>
-                </div>
-            </div>
-            <div class="note">
-                <div class="title">
-                    <img src="img/cat1.jpg" alt="note">
-                    <h3>Заголовок</h3>
-                </div>
-                <p>Текст</p>
-                <div class="buttons">
-                    <button class="trash"></button>
-                </div>
-            </div>
-            <div class="note">
-                <div class="title">
-                    <img src="img/cat1.jpg" alt="note">
-                    <h3>Заголовок</h3>
-                </div>
-                <p>Текст</p>
-                <div class="buttons">
-                    <button class="trash"></button>
-                </div>
-            </div>
+            <?php
+            $userId = $_SESSION["userId"];
+            include "controllers/db.php";
+            $query = "SELECT * FROM `notes` WHERE `userid`=$userId";
+            $result = $link->query($query);
+            while ($row = $result->fetch_assoc()) {
+                $title = $row["title"];
+                $body = $row["body"];
+                $image = $row["image"];
+                echo "<div class='note'>";
+                echo "<div class='title'>";
+                echo "<img src='$image' alt='note'>";
+                echo "<h3>$title</h3>";
+                echo "</div>";
+                echo "<p>$body</p>";
+                echo "<div class='buttons'>";
+                echo "<button class='trash'></button>";
+                echo "</div>";
+                echo "</div></div>";
+            }
+            $link->close();
+            ?>
         </div>
         <a href="create.php" class="add_note">+</a>
         <footer>
